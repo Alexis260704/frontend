@@ -25,6 +25,17 @@
         <span class="navbar-user" aria-label="Usuario actual">👤 {{ username() }}</span>
         <a [routerLink]="['/user/perfil']" aria-label="Perfil">Perfil</a>
         <a [routerLink]="['/user/pedidos']" aria-label="Mis pedidos">🧾 Pedidos</a>
+
+        <!-- ✅ Solo visible para ADMIN -->
+        <a
+          *ngIf="role() === 'ADMIN'"
+          [routerLink]="['/admin']"
+          class="navbar-admin"
+          aria-label="Panel de administración"
+        >
+          ⚙️ Panel Admin
+        </a>
+
         <button class="btn-logout" (click)="logout()" aria-label="Cerrar sesión">Salir</button>
       </ng-container>
 

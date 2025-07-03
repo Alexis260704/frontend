@@ -49,53 +49,61 @@ export const appRoutes: Routes = [
       {
         path: 'soporte',
         loadComponent: () => import('./features/user/soporte/soporte-list.component').then(m => m.SoporteListComponent)
+      },
+      {
+        path: 'perfil',
+        loadComponent: () => import('./features/user/perfil/perfil.component').then(m => m.PerfilComponent)
       }
+
     ]
   },
 
   // ✅ Admin
   {
-    path: 'admin',
-    canActivate: [AuthGuard, AdminGuard],
-    children: [
-      {
-        path: '',
-        loadComponent: () => import('./features/admin/dashboard/dashboard.component').then(m => m.DashboardComponent)
-      },
-      {
-        path: 'manage-users',
-        loadComponent: () => import('./features/admin/manage-users/user-list.component').then(m => m.UserListComponent)
-      },
-      {
-        path: 'manage-users/new',
-        loadComponent: () => import('./features/admin/manage-users/user-form.component').then(m => m.UserFormComponent)
-      },
-      {
-        path: 'manage-users/:id',
-        loadComponent: () => import('./features/admin/manage-users/user-form.component').then(m => m.UserFormComponent)
-      },
-      {
-        path: 'manage-products',
-        loadComponent: () => import('./features/admin/manage-products/product-list.component').then(m => m.ProductListComponent)
-      },
-      {
-        path: 'manage-products/new',
-        loadComponent: () => import('./features/admin/manage-products/product-form.component').then(m => m.ProductFormComponent)
-      },
-      {
-        path: 'manage-products/:id',
-        loadComponent: () => import('./features/admin/manage-products/product-form.component').then(m => m.ProductFormComponent)
-      },
-      {
-        path: 'manage-orders',
-        loadComponent: () => import('./features/admin/manage-orders/order-list.component').then(m => m.OrderListComponent)
-      },
-      {
-        path: 'manage-orders/:id',
-        loadComponent: () => import('./features/admin/manage-orders/order-detail.component').then(m => m.OrderDetailComponent)
-      }
-    ]
-  },
+  path: 'admin',
+  canActivate: [AuthGuard, AdminGuard],
+  loadComponent: () => import('./features/admin/dashboard/dashboard.component').then(m => m.DashboardComponent),
+  children: [
+    {
+      path: '',
+      redirectTo: 'manage-users',
+      pathMatch: 'full'
+    },
+    {
+      path: 'manage-users',
+      loadComponent: () => import('./features/admin/manage-users/user-list.component').then(m => m.UserListComponent)
+    },
+    {
+      path: 'manage-users/new',
+      loadComponent: () => import('./features/admin/manage-users/user-form.component').then(m => m.UserFormComponent)
+    },
+    {
+      path: 'manage-users/:id',
+      loadComponent: () => import('./features/admin/manage-users/user-form.component').then(m => m.UserFormComponent)
+    },
+    {
+      path: 'manage-products',
+      loadComponent: () => import('./features/admin/manage-products/product-list.component').then(m => m.ProductListComponent)
+    },
+    {
+      path: 'manage-products/new',
+      loadComponent: () => import('./features/admin/manage-products/product-form.component').then(m => m.ProductFormComponent)
+    },
+    {
+      path: 'manage-products/:id',
+      loadComponent: () => import('./features/admin/manage-products/product-form.component').then(m => m.ProductFormComponent)
+    },
+    {
+      path: 'manage-orders',
+      loadComponent: () => import('./features/admin/manage-orders/order-list.component').then(m => m.OrderListComponent)
+    },
+    {
+      path: 'manage-orders/:id',
+      loadComponent: () => import('./features/admin/manage-orders/order-detail.component').then(m => m.OrderDetailComponent)
+    }
+  ]
+}
+,
 
   // ✅ Ruta fallback
   { path: '**', redirectTo: 'tienda' }

@@ -1,33 +1,37 @@
 <main class="store-content space-y-6">
 
-  <!-- Carrusel de categorías destacadas (Bootstrap) -->
-  <section class="carousel-categorias">
+  <!-- Carrusel de categorías destacadas -->
+<section class="carousel-categorias">
   <div id="promoCarousel" class="carousel slide mb-5" data-bs-ride="carousel">
     <div class="carousel-inner">
 
-      <div class="carousel-item active" (click)="irACategoria('televisores')" style="cursor: pointer;">
-        <img src="assets/banners/resized_televisores.jpg" class="d-block w-100 categoria-img" alt="Televisores">
+      <!-- Laptops -->
+      <div class="carousel-item active" (click)="irACategoria('Laptops')" style="cursor: pointer;">
+        <img src="assets/banners/resized_celulares.jpg" class="d-block w-100 categoria-img" alt="Laptops">
         <div class="carousel-caption d-none d-md-block">
-          <h5>📺 Televisores</h5>
+          <h5>💻 Laptops</h5>
         </div>
       </div>
 
-      <div class="carousel-item" (click)="irACategoria('celulares')" style="cursor: pointer;">
-        <img src="assets/banners/resized_celulares.jpg" class="d-block w-100 categoria-img" alt="Celulares">
+      <!-- Celulares -->
+      <div class="carousel-item" (click)="irACategoria('Celulares')" style="cursor: pointer;">
+        <img src="assets/banners/resized_lavadoras.jpg" class="d-block w-100 categoria-img" alt="Celulares">
         <div class="carousel-caption d-none d-md-block">
           <h5>📱 Celulares</h5>
         </div>
       </div>
 
-      <div class="carousel-item" (click)="irACategoria('lavadoras')" style="cursor: pointer;">
-        <img src="assets/banners/resized_lavadoras.jpg" class="d-block w-100 categoria-img" alt="Lavadoras">
+      <!-- Electrodomésticos -->
+      <div class="carousel-item" (click)="irACategoria('Electrodomésticos')" style="cursor: pointer;">
+        <img src="assets/banners/resized_televisores.jpg" class="d-block w-100 categoria-img" alt="Electrodomésticos">
         <div class="carousel-caption d-none d-md-block">
-          <h5>🧺 Lavadoras</h5>
+          <h5>🔌 Electrodomésticos</h5>
         </div>
       </div>
 
     </div>
 
+    <!-- Controles del carrusel -->
     <button class="carousel-control-prev" type="button" data-bs-target="#promoCarousel" data-bs-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Anterior</span>
@@ -38,6 +42,7 @@
     </button>
   </div>
 </section>
+
 
 
   <!-- Carrusel de productos destacados -->

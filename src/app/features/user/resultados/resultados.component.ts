@@ -18,11 +18,13 @@ import { CartService } from '../../../core/services/cart.service';
 export class ResultadosComponent implements OnInit {
   productos: Product[] = [];
   loading = true;
+  currentCategory = '';
+  currentSearch = '';
 
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService,
-    private cartService: CartService // ✅ servicio de carrito inyectado
+    private cartService: CartService
   ) {}
 
   ngOnInit(): void {
@@ -30,6 +32,9 @@ export class ResultadosComponent implements OnInit {
       const name = params['name'] || '';
       const brand = params['brand'] || '';
       const category = params['category'] || '';
+
+      this.currentSearch = name || brand;
+      this.currentCategory = category;
 
       this.loading = true;
       this.productService.search(name, category, brand).subscribe({
@@ -43,7 +48,7 @@ export class ResultadosComponent implements OnInit {
   }
 
   agregarAlCarrito(producto: Product): void {
-    this.cartService.agregarProducto(producto, 1);
-    alert('✅ Producto agregado al carrito');
+  this.cartService.agregarProducto(producto, 1);
   }
+
 }

@@ -1,9 +1,15 @@
 <section class="resultados-container">
-  <h2 class="titulo">🔎 Resultados de búsqueda</h2>
+  <h2 class="titulo">
+    🔎 Resultados de búsqueda
+    <span *ngIf="currentCategory"> — {{ currentCategory | titlecase }}</span>
+    <span *ngIf="!currentCategory && currentSearch"> — "{{ currentSearch }}"</span>
+  </h2>
 
   <div *ngIf="loading" class="mensaje-cargando">Cargando productos...</div>
 
-  <div *ngIf="!loading && productos.length === 0" class="mensaje-vacio">No se encontraron productos.</div>
+  <div *ngIf="!loading && productos.length === 0" class="mensaje-vacio">
+    No se encontraron productos.
+  </div>
 
   <div *ngIf="!loading && productos.length > 0" class="grid-productos">
     <div *ngFor="let p of productos" class="producto-card">

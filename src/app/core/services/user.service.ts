@@ -5,10 +5,17 @@ import { User } from '../../shared/models/user.model';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
-  private baseUrl = 'http://localhost:8080/api/users';
+  private readonly baseUrl = 'http://localhost:8080/api/admin/users';
+  private readonly profileUrl = 'http://localhost:8080/api/user/profile';
 
   constructor(private http: HttpClient) {}
 
+  // 🔐 Usuario autenticado
+  getPerfil(): Observable<User> {
+    return this.http.get<User>(this.profileUrl);
+  }
+
+  // 📋 Gestión de usuarios
   getAll(): Observable<User[]> {
     return this.http.get<User[]>(this.baseUrl);
   }
@@ -29,3 +36,4 @@ export class UserService {
     return this.http.delete<void>(`${this.baseUrl}/${id}`);
   }
 }
+

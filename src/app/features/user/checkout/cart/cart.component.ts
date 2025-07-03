@@ -48,9 +48,20 @@ export class CartComponent implements OnInit {
   }
 
   incrementarCantidad(id: number): void {
-    this.cartService.cambiarCantidad(id, 1);
-    this.actualizarCarrito();
+  const item = this.items.find(i => i.producto.id === id);
+  if (!item) return;
+
+  const stockDisponible = item.producto.stock;
+
+  if (item.cantidad >= stockDisponible) {
+    alert(`❌ Solo hay ${stockDisponible} unidades disponibles de "${item.producto.name}"`);
+    return;
   }
+
+  this.cartService.cambiarCantidad(id, 1);
+  this.actualizarCarrito();
+  }
+
 
   disminuirCantidad(id: number): void {
     this.cartService.cambiarCantidad(id, -1);

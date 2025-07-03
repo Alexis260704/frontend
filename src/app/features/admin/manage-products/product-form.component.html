@@ -1,50 +1,105 @@
-<form [formGroup]="productForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data" class="space-y-4">
-  <div>
-    <label for="name">Nombre</label>
-    <input id="name" type="text" formControlName="name" class="w-full border p-2 rounded" />
+<form
+  [formGroup]="productForm"
+  (ngSubmit)="onSubmit()"
+  enctype="multipart/form-data"
+  class="row g-3 needs-validation"
+  novalidate
+>
+  <div class="col-12">
+    <label for="name" class="form-label">Nombre</label>
+    <input
+      id="name"
+      type="text"
+      formControlName="name"
+      class="form-control"
+      required
+    />
   </div>
 
-  <div>
-    <label for="description">Descripción</label>
-    <textarea id="description" formControlName="description" class="w-full border p-2 rounded"></textarea>
+  <div class="col-12">
+    <label for="description" class="form-label">Descripción</label>
+    <textarea
+      id="description"
+      formControlName="description"
+      class="form-control"
+      required
+    ></textarea>
   </div>
 
-  <div>
-    <label for="price">Precio</label>
-    <input id="price" type="number" formControlName="price" step="0.01" class="w-full border p-2 rounded" />
+  <div class="col-md-6">
+    <label for="price" class="form-label">Precio</label>
+    <input
+      id="price"
+      type="number"
+      step="0.01"
+      formControlName="price"
+      class="form-control"
+      required
+    />
   </div>
 
-  <div>
-    <label for="stock">Stock</label>
-    <input id="stock" type="number" formControlName="stock" class="w-full border p-2 rounded" />
+  <div class="col-md-6">
+    <label for="stock" class="form-label">Stock</label>
+    <input
+      id="stock"
+      type="number"
+      formControlName="stock"
+      class="form-control"
+      required
+    />
   </div>
 
-  <div>
-    <label for="category">Categoría</label>
-    <select id="category" formControlName="categoryId" class="w-full border p-2 rounded">
+  <div class="col-md-6">
+    <label for="category" class="form-label">Categoría</label>
+    <select
+      id="category"
+      formControlName="categoryId"
+      class="form-select"
+      required
+    >
       <option *ngFor="let c of categories" [value]="c.id">{{ c.name }}</option>
     </select>
   </div>
 
-  <div>
-    <label for="brand">Marca</label>
-    <select id="brand" formControlName="brandId" class="w-full border p-2 rounded">
+  <div class="col-md-6">
+    <label for="brand" class="form-label">Marca</label>
+    <select
+      id="brand"
+      formControlName="brandId"
+      class="form-select"
+      required
+    >
       <option *ngFor="let b of brands" [value]="b.id">{{ b.name }}</option>
     </select>
   </div>
 
-  <div>
-    <label for="file">Imagen</label>
-    <input id="file" type="file" (change)="onFileChange($event)" class="w-full border p-2 rounded" />
+  <div class="col-12">
+    <label for="file" class="form-label">Imagen</label>
+    <input
+      id="file"
+      type="file"
+      (change)="onFileChange($event)"
+      class="form-control"
+    />
   </div>
 
-  <div>
-    <label>
-      <input type="checkbox" formControlName="featured" /> Destacado
-    </label>
+  <div class="col-12 form-check">
+    <input
+      type="checkbox"
+      formControlName="featured"
+      class="form-check-input"
+      id="featured"
+    />
+    <label class="form-check-label" for="featured">Destacado</label>
   </div>
 
-  <button type="submit" [disabled]="productForm.invalid" class="bg-blue-500 text-white px-4 py-2 rounded">
-    {{ id ? 'Actualizar' : 'Crear' }} Producto
-  </button>
+  <div class="col-12">
+    <button
+      type="submit"
+      [disabled]="productForm.invalid"
+      class="btn btn-primary"
+    >
+      {{ id ? 'Actualizar' : 'Crear' }} Producto
+    </button>
+  </div>
 </form>

@@ -23,9 +23,11 @@ export class NavbarComponent {
 
   itemsCount = this.cartService.itemsCount;
 
-  // ✅ Ahora usan señales reactivas del AuthService
   isLoggedIn = this.authService.isLoggedInSig;
   username = this.authService.username$;
+
+  // ✅ Agregado: señal para el rol del usuario
+  role = this.authService.role$;
 
   logout() {
     this.authService.logout();

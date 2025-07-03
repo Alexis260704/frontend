@@ -12,7 +12,8 @@ export const jwtInterceptor: HttpInterceptorFn = (req, next) => {
     '/api/user',
     '/api/orders',
     '/api/orders/',
-    '/api/soporte'
+    '/api/soporte',
+    '/api/users'
   ];
 
   // ✅ Solo agregar token si la ruta es privada

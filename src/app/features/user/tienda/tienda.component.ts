@@ -100,10 +100,11 @@ export class TiendaComponent implements OnInit {
   goToProduct(id: number): void {
     this.router.navigate(['/tienda', id]);
   }
-  irACategoria(nombre: string): void {
-  this.router.navigate(['/tienda'], {
+ irACategoria(nombre: string): void {
+  this.router.navigate(['/resultados'], {
     queryParams: { category: nombre }
   });
 }
+
 
 }

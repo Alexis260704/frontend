@@ -1,0 +1,16 @@
+<section class="perfil-container">
+  <h2 class="perfil-titulo">👤 Mi perfil</h2>
+
+  <div *ngIf="loading">Cargando datos...</div>
+  <div *ngIf="error" class="perfil-error">{{ error }}</div>
+
+  <div *ngIf="user" class="perfil-info">
+    <p><strong>Nombre:</strong> {{ user.firstName }} {{ user.lastName }}</p>
+    <p><strong>Email:</strong> {{ user.email }}</p>
+    <p><strong>Teléfono:</strong> {{ user.phone || 'No registrado' }}</p>
+    <p><strong>Rol:</strong> {{ user.role === 'ROLE_ADMIN' ? 'Administrador' : 'Cliente' }}</p>
+    <p><strong>Estado:</strong> {{ user.active ? 'Activo' : 'Inactivo' }}</p>
+    <p><strong>Registrado:</strong> {{ user.createdAt | date:'medium' }}</p>
+    <p><strong>Última actualización:</strong> {{ user.updatedAt | date:'medium' }}</p>
+  </div>
+</section>

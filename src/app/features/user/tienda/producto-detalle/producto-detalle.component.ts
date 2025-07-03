@@ -45,7 +45,7 @@ export class ProductoDetalleComponent implements OnInit {
   }
   agregarAlCarrito(): void {
   this.cartService.agregarProducto(this.producto, 1);
-  alert('🛒 Producto añadido al carrito');
   }
+
 
 }

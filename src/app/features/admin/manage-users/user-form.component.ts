@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../../../core/services/user.service';
 import { User } from '../../../shared/models/user.model';
 
@@ -10,37 +10,36 @@ import { User } from '../../../shared/models/user.model';
   standalone: true,
   templateUrl: './user-form.component.html',
   styleUrls: ['./user-form.component.scss'],
-  imports: [CommonModule, ReactiveFormsModule, ]
+  imports: [CommonModule, ReactiveFormsModule]
 })
 export class UserFormComponent implements OnInit {
-  userForm!: FormGroup;
-  id: number | null = null;
-  isEditMode = false;
-  roles = ['ROLE_USER', 'ROLE_ADMIN'];
+  private fb = inject(FormBuilder);
+  private route = inject(ActivatedRoute);
+  private router = inject(Router);
+  private userService = inject(UserService);
 
-  constructor(
-    private fb: FormBuilder,
-    private userService: UserService,
-    private route: ActivatedRoute,
-    private router: Router
-  ) {}
+  userForm!: FormGroup;
+  id?: number;
+  modoEdicion = false;
+  loading = false;
 
   ngOnInit(): void {
+    this.id = Number(this.route.snapshot.paramMap.get('id'));
+    this.modoEdicion = !!this.id;
+
     this.userForm = this.fb.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      phone: ['', Validators.required],
+      phone: [''],
       role: ['ROLE_USER', Validators.required],
       active: [true]
     });
 
-    this.id = Number(this.route.snapshot.paramMap.get('id'));
-    this.isEditMode = !!this.id;
-
-    if (this.isEditMode) {
-      this.userService.getById(this.id!).subscribe((user: User) => {
-        this.userForm.patchValue(user);
+    if (this.modoEdicion) {
+      this.userService.getById(this.id!).subscribe({
+        next: (user) => this.userForm.patchValue(user),
+        error: () => alert('Error al cargar usuario')
       });
     }
   }
@@ -48,16 +47,22 @@ export class UserFormComponent implements OnInit {
   onSubmit(): void {
     if (this.userForm.invalid) return;
 
-    const userData: User = this.userForm.value;
+    const usuario: User = this.userForm.value;
+    this.loading = true;
 
-    if (this.isEditMode) {
-      this.userService.update(this.id!, userData).subscribe(() => {
+    const obs = this.modoEdicion
+      ? this.userService.update(this.id!, usuario)
+      : this.userService.create(usuario);
+
+    obs.subscribe({
+      next: () => {
+        this.loading = false;
         this.router.navigate(['/admin/manage-users']);
-      });
-    } else {
-      this.userService.create(userData).subscribe(() => {
-        this.router.navigate(['/admin/manage-users']);
-      });
-    }
+      },
+      error: () => {
+        this.loading = false;
+        alert('Error al guardar usuario');
+      }
+    });
   }
 }

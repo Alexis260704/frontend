@@ -21,19 +21,40 @@ export class CartService {
     return this.itemsSignal();
   }
 
-  agregarProducto(producto: Product, cantidad: number = 1): void {
-    const items = [...this.itemsSignal()];
-    const index = items.findIndex(item => item.producto.id === producto.id);
-
-    if (index >= 0) {
-      items[index].cantidad += cantidad;
-    } else {
-      items.push({ producto, cantidad });
-    }
-
-    this.itemsSignal.set(items);
-    this.saveToLocalStorage();
+agregarProducto(producto: Product | null | undefined, cantidad: number = 1): void {
+  if (!producto) {
+    alert('❌ Producto inválido');
+    return;
   }
+
+  if (producto.stock < cantidad) {
+    alert('❌ No hay stock suficiente para agregar este producto');
+    return;
+  }
+
+  const items = [...this.itemsSignal()];
+  const index = items.findIndex(item => item.producto.id === producto.id);
+
+  if (index >= 0) {
+    const nuevaCantidad = items[index].cantidad + cantidad;
+    if (nuevaCantidad > producto.stock) {
+      alert('❌ No puedes agregar más unidades de las disponibles');
+      return;
+    }
+    items[index].cantidad = nuevaCantidad;
+  } else {
+    items.push({ producto, cantidad });
+  }
+
+  this.itemsSignal.set(items);
+  this.saveToLocalStorage();
+
+  // ✅ Mensaje de éxito solo si se agregó correctamente
+  alert(`✅ Se agregó "${producto.name}" al carrito`);
+}
+
+
+
 
   eliminarProducto(idProducto: number): void {
     const updated = this.itemsSignal().filter(item => item.producto.id !== idProducto);

@@ -18,7 +18,8 @@ export class AuthService {
   // 🔁 Señales para estado reactivo
   private loggedIn = signal(this.isAuthenticated());
   private usernameSig = signal(this.getUsername());
-
+  private roleSig = signal(this.getUserRole());
+  public readonly role$ = this.roleSig.asReadonly();
   public isLoggedInSig = this.loggedIn.asReadonly();
   public username$ = this.usernameSig.asReadonly();
 
@@ -50,6 +51,7 @@ export class AuthService {
         // 🔁 Actualiza señales reactivas
         this.loggedIn.set(true);
         this.usernameSig.set(decoded.sub || '');
+        this.roleSig.set(decoded.role || null); // ✅ Agrega esta línea
 
         // Redirige según rol
         const role = decoded.role;

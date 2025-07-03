@@ -1,43 +1,84 @@
 .pago-container {
-  max-width: 768px;
+  max-width: 800px;
   margin: 0 auto;
-  padding: 1.5rem;
-  background: #fff;
+  padding: 2rem;
+  background-color: #fff;
   border-radius: 12px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.05);
+  font-family: 'Segoe UI', sans-serif;
+  color: #1e1e2f;
 }
 
 .pago-titulo {
-  font-size: 1.5rem;
-  font-weight: 700;
+  font-size: 1.8rem;
+  font-weight: bold;
   margin-bottom: 1.5rem;
-  color: #1a202c;
+  color: #0d6efd;
 }
 
 .pago-error {
-  color: #e53e3e;
-  font-weight: 500;
+  background-color: #ffe5e5;
+  color: #b91c1c;
+  padding: 0.75rem;
+  border-radius: 6px;
   margin-bottom: 1rem;
 }
 
 .pago-success {
-  color: #38a169;
+  background-color: #d1fae5;
+  color: #065f46;
+  padding: 0.75rem;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+}
+
+.pago-seccion {
+  margin-bottom: 2rem;
+}
+
+.pago-label {
+  display: block;
   font-weight: 500;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
 
-.pago-resumen {
-  background-color: #f7fafc;
-  border: 1px solid #e2e8f0;
-  padding: 1rem;
-  border-radius: 8px;
-  margin-bottom: 1rem;
+.pago-select {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
 }
 
-.pago-subtitulo {
-  font-size: 1.1rem;
-  font-weight: 600;
-  margin-bottom: 0.75rem;
+.qr-yape {
+  text-align: center;
+
+  h4 {
+    margin-bottom: 1rem;
+  }
+
+  .pago-qr {
+    width: 210px;
+    height: 210px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .pago-btn-secundario {
+    display: inline-block;
+    margin-top: 1rem;
+    background-color: #0d6efd;
+    color: #fff;
+    padding: 0.5rem 1.25rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #0b5ed7;
+    }
+  }
 }
 
 .pago-lista {
@@ -47,48 +88,50 @@
 }
 
 .pago-item {
-  padding: 0.75rem 0;
-  border-bottom: 1px solid #e2e8f0;
-}
+  border-bottom: 1px solid #e5e7eb;
+  padding: 1rem 0;
 
-.pago-item:last-child {
-  border-bottom: none;
-}
+  .pago-nombre {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
 
-.pago-nombre {
-  font-weight: 600;
-  color: #2d3748;
-}
-
-.pago-subtotal {
-  font-weight: 500;
-  color: #4a5568;
-  margin-top: 0.25rem;
+  .pago-subtotal {
+    font-weight: 500;
+    margin-top: 0.5rem;
+  }
 }
 
 .pago-total {
   font-size: 1.2rem;
-  font-weight: 700;
-  margin-top: 1rem;
-  color: #1a202c;
-  text-align: right;
-}
+  margin-top: 1.5rem;
 
-input[type='file'] {
-  border: 1px solid #cbd5e0;
-  padding: 0.5rem;
-  border-radius: 6px;
-  background-color: #fff;
+  .pago-total-valor {
+    font-weight: bold;
+    color: #10b981;
+  }
 }
 
 .pago-boton {
-  text-align: right;
-  margin-top: 1.5rem;
-}
+  text-align: center;
 
-img.comprobante-preview {
-  margin-top: 1rem;
-  max-width: 100%;
-  border: 1px solid #cbd5e0;
-  border-radius: 6px;
+  .pago-btn {
+    background-color: #22c55e;
+    color: #fff;
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #16a34a;
+    }
+
+    &:disabled {
+      background-color: #9ca3af;
+      cursor: not-allowed;
+    }
+  }
 }

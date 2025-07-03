@@ -1,0 +1,30 @@
+.perfil-container {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.perfil-titulo {
+  font-size: 1.8rem;
+  color: #0d6efd;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.perfil-info p {
+  font-size: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.perfil-error {
+  background-color: #ffe5e5;
+  color: #b91c1c;
+  padding: 0.75rem;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  text-align: center;
+}

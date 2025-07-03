@@ -29,7 +29,9 @@ export class AppComponent {
       )
       .subscribe((event) => {
         const url = event.urlAfterRedirects;
-        this.mostrarLayout = !['/login', '/register'].includes(url);
+        this.mostrarLayout = !(
+  ['/login', '/register'].includes(url) || url.startsWith('/admin')
+    );
       });
   }
 }
