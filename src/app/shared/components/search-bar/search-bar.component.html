@@ -1,0 +1,47 @@
+<form (submit)="buscar(); $event.preventDefault()" class="search-form">
+  <input
+    type="text"
+    [formControl]="searchControl"
+    placeholder="Buscar productos, marcas o categorías..."
+    class="search-input"
+  />
+
+  <!-- Dropdown de sugerencias -->
+  <div *ngIf="showSuggestions" class="suggestions-dropdown">
+    <ng-container *ngIf="suggestions.products.length || suggestions.brands.length || suggestions.categories.length; else sinResultados">
+
+      <!-- Productos -->
+      <div *ngFor="let p of suggestions.products" class="suggestion-item" (click)="seleccionarFiltro('product', p)">
+        {{ p }}
+      </div>
+
+      <!-- Marcas -->
+      <div *ngIf="suggestions.brands.length">
+        <p class="suggestion-group">Marcas</p>
+        <div
+          *ngFor="let b of suggestions.brands"
+          class="suggestion-item"
+          (click)="seleccionarFiltro('brand', b)"
+        >
+          {{ b }}
+        </div>
+      </div>
+
+      <!-- Categorías -->
+      <div *ngIf="suggestions.categories.length">
+        <p class="suggestion-group">Categorías</p>
+        <div
+          *ngFor="let c of suggestions.categories"
+          class="suggestion-item"
+          (click)="seleccionarFiltro('category', c)"
+        >
+          {{ c }}
+        </div>
+      </div>
+    </ng-container>
+
+    <ng-template #sinResultados>
+      <div class="suggestion-empty">Sin resultados</div>
+    </ng-template>
+  </div>
+</form>

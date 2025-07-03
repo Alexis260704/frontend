@@ -1,0 +1,38 @@
+.soporte-list-container {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 1rem;
+
+  h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .error {
+    color: red;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+
+    th, td {
+      padding: 0.75rem;
+      text-align: left;
+      border-bottom: 1px solid #ccc;
+    }
+
+    th {
+      background-color: #f4f4f4;
+    }
+  }
+
+  a {
+    display: inline-block;
+    margin-top: 1rem;
+    color: seagreen;
+    text-decoration: underline;
+  }
+}

@@ -1,0 +1,30 @@
+<section class="resultados-container">
+  <h2 class="titulo">🔎 Resultados de búsqueda</h2>
+
+  <div *ngIf="loading" class="mensaje-cargando">Cargando productos...</div>
+
+  <div *ngIf="!loading && productos.length === 0" class="mensaje-vacio">No se encontraron productos.</div>
+
+  <div *ngIf="!loading && productos.length > 0" class="grid-productos">
+    <div *ngFor="let p of productos" class="producto-card">
+      <a [routerLink]="['/tienda', p.id]" class="producto-link">
+        <img
+          [src]="'http://localhost:8080' + p.imageUrl"
+          alt="{{ p.name }}"
+          class="producto-img"
+        />
+        <h3 class="producto-nombre">{{ p.name }}</h3>
+        <p class="producto-marca">Marca: {{ p.brandName }}</p>
+        <p class="producto-descripcion">{{ p.description }}</p>
+        <p class="producto-precio">S/ {{ p.price | number: '1.2-2' }}</p>
+      </a>
+
+      <button
+        (click)="agregarAlCarrito(p)"
+        class="btn-agregar-carrito"
+      >
+        🛒 Agregar al carrito
+      </button>
+    </div>
+  </div>
+</section>

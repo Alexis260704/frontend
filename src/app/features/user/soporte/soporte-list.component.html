@@ -1,0 +1,31 @@
+<div class="soporte-list-container">
+  <h2>Mis solicitudes de soporte</h2>
+
+  <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+
+  <div *ngIf="solicitudes.length === 0 && !errorMessage">
+    <p>No has enviado ninguna solicitud aún.</p>
+    <a routerLink="/user/soporte/nueva">Crear nueva solicitud</a>
+  </div>
+
+  <table *ngIf="solicitudes.length > 0">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Asunto</th>
+        <th>Mensaje</th>
+        <th>Estado</th>
+        <th>Fecha</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let s of solicitudes">
+        <td>{{ s.id }}</td>
+        <td>{{ s.asunto }}</td>
+        <td>{{ s.mensaje }}</td>
+        <td>{{ s.estado }}</td>
+        <td>{{ s.fechaEnvio | date: 'shortDate' }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

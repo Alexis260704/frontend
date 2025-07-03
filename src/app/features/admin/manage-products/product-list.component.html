@@ -1,0 +1,38 @@
+<div class="product-list-container">
+  <h2>Gestión de productos</h2>
+
+  <button (click)="createProduct()">➕ Nuevo producto</button>
+
+  <table *ngIf="products.length > 0">
+    <thead>
+      <tr>
+        <th>Imagen</th>
+        <th>Nombre</th>
+        <th>Precio</th>
+        <th>Stock</th>
+        <th>Categoría</th>
+        <th>Marca</th>
+        <th>Destacado</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let p of products">
+        <td><img [src]="'http://localhost:8080' + p.imageUrl" alt="Imagen" width="50" />
+      </td>
+        <td>{{ p.name }}</td>
+        <td>S/ {{ p.price ? (p.price | number: '1.2-2') : '0.00' }}</td>
+        <td>{{ p.stock }}</td>
+        <td>{{ p.categoryName }}</td>
+        <td>{{ p.brandName }}</td>
+        <td>{{ p.featured ? '✅' : '❌' }}</td>
+        <td>
+          <button (click)="editProduct(p.id)">✏️</button>
+          <button (click)="deleteProduct(p.id)">🗑️</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p *ngIf="products.length === 0">No hay productos registrados.</p>
+</div>

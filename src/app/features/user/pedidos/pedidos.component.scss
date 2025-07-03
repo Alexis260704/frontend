@@ -1,0 +1,58 @@
+.pedidos-container {
+  max-width: 64rem;
+  margin: 0 auto;
+  padding: 1rem;
+
+  .titulo {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    color: #1f2937;
+  }
+
+  .mensaje-vacio {
+    color: #6b7280;
+    font-size: 0.95rem;
+  }
+
+  .pedido-card {
+    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    background-color: #ffffff;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    transition: box-shadow 0.2s ease;
+
+    &:hover {
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .pedido-id {
+      color: #1d4ed8;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    .direccion {
+      font-size: 0.875rem;
+      color: #6b7280;
+      margin-top: 0.25rem;
+    }
+
+    .ver-detalles {
+      margin-top: 0.5rem;
+      display: inline-block;
+      font-size: 0.875rem;
+      color: #2563eb;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}

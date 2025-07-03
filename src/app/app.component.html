@@ -1,0 +1,8 @@
+<app-navbar></app-navbar> <!-- Siempre visible -->
+
+<main class="main-content">
+  <router-outlet></router-outlet>
+</main>
+
+<!-- Footer solo si no estás en login/register -->
+<app-footer *ngIf="mostrarLayout"></app-footer>

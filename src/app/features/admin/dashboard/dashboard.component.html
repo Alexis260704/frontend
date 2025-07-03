@@ -1,0 +1,17 @@
+<div class="admin-layout">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <h2 class="sidebar-title">Admin</h2>
+    <nav class="sidebar-nav">
+      <a routerLink="/admin/manage-users" routerLinkActive="active">👤 Usuarios</a>
+      <a routerLink="/admin/manage-products" routerLinkActive="active">📦 Productos</a>
+      <a routerLink="/admin/manage-orders" routerLinkActive="active">📑 Pedidos</a>
+    </nav>
+  </aside>
+
+  <!-- Contenido principal -->
+  <main class="main-content">
+    <h1 class="main-title">⚙️ Panel de Administración</h1>
+    <router-outlet></router-outlet>
+  </main>
+</div>

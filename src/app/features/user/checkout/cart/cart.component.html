@@ -1,0 +1,63 @@
+<app-checkout-steps></app-checkout-steps>
+
+<div class="cart-grid" *ngIf="items.length > 0; else emptyCart">
+  <!-- 🛒 Columna izquierda: Productos -->
+  <div class="cart-productos">
+    <h2>🛍 Productos en tu carrito</h2>
+
+    <div *ngFor="let item of items" class="producto-card">
+      <img
+        [src]="'http://localhost:8080' + item.producto.imageUrl"
+        alt="{{ item.producto.name }}"
+        class="producto-img"
+      />
+
+      <div class="producto-detalles">
+        <h3>{{ item.producto.name }}</h3>
+        <p class="sku">SKU: {{ item.producto.id }}</p>
+        <p class="marca">Marca: {{ item.producto.brandName }}</p>
+
+        <div class="precios">
+          <span class="precio-actual">S/ {{ item.producto.price | number: '1.2-2' }}</span>
+          <span class="precio-original">S/ {{ item.producto.price * 1.25 | number: '1.2-2' }}</span>
+        </div>
+
+        <div class="cantidad-control">
+          <button (click)="disminuirCantidad(item.producto.id)">➖</button>
+          <span>{{ item.cantidad }}</span>
+          <button (click)="incrementarCantidad(item.producto.id)">➕</button>
+        </div>
+
+        <p class="entrega">📦 Entrega a domicilio disponible</p>
+        <p class="retiro">🏬 Retiro en tienda también</p>
+
+        <button (click)="eliminarItem(item.producto.id)" class="btn-eliminar">
+          🗑 Eliminar
+        </button>
+      </div>
+    </div>
+
+    <!-- Promo + cupón -->
+    
+  </div>
+
+  <!-- 🧾 Columna derecha: Resumen -->
+  <div class="cart-resumen">
+    <h2>Resumen de tu compra</h2>
+    <p class="resumen-linea">
+      Productos: <span>{{ items.length }}</span>
+    </p>
+    <p class="resumen-linea">
+      Total: <span>S/ {{ total | number: '1.2-2' }}</span>
+    </p>
+
+    <button class="btn-continuar" (click)="continuar()">Continuar compra →</button>
+
+    <button class="btn-vaciar" (click)="vaciarCarrito()">Vaciar carrito</button>
+  </div>
+</div>
+
+<!-- Carrito vacío -->
+<ng-template #emptyCart>
+  <p class="cart-vacio">Tu carrito está vacío.</p>
+</ng-template>

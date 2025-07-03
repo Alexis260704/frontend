@@ -1,0 +1,131 @@
+/* Estilos generales del contenedor */
+.store-content {
+  padding: 1rem;
+}
+
+/* Carrusel de categorías destacadas */
+.carousel-categorias {
+  margin-top: 1.5rem;
+  margin-bottom: 3rem;
+
+  #promoCarousel {
+    border-radius: 8px;
+    overflow: hidden;
+
+    .carousel-item {
+      cursor: pointer;
+
+      img.categoria-img {
+        width: 100%;
+        height: 1000px;
+        object-fit: cover; // Ajusta imagen al contenedor sin deformarla
+        border-radius: 0;
+      }
+    }
+
+    .carousel-caption {
+      background-color: rgba(0, 0, 0, 0.6);
+      border-radius: 4px;
+      padding: 0.5rem;
+
+      h5 {
+        color: #fff;
+        font-size: 1.3rem;
+        font-weight: bold;
+        margin: 0;
+      }
+    }
+
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+      background-size: 100% 100%;
+    }
+  }
+}
+
+/* Carrusel horizontal de productos destacados */
+.featured-carousel {
+  .titulo-carrusel {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+  }
+
+  .carousel-wrapper {
+    display: flex;
+    gap: 1.5rem;
+    overflow-x: auto;
+    padding-bottom: 1rem;
+    scroll-behavior: smooth;
+  }
+
+  .featured-item {
+    min-width: 250px;
+    max-width: 280px;
+    flex: 0 0 auto;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 1rem;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: scale(1.03);
+    }
+
+    img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    h3 {
+      font-size: 1.1rem;
+      margin-top: 0.6rem;
+      font-weight: 600;
+    }
+
+    .producto-marca,
+    .producto-descripcion,
+    .producto-precio {
+      font-size: 0.9rem;
+      margin: 0.3rem 0;
+    }
+
+    .producto-precio {
+      font-weight: bold;
+      color: #198754;
+    }
+  }
+}
+
+/* Resultados de búsqueda */
+.resultados-busqueda {
+  .titulo-resultados {
+    font-size: 1.3rem;
+    margin-bottom: 0.8rem;
+    font-weight: 500;
+  }
+
+  .resultado-item {
+    padding: 0.5rem;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+    transition: background 0.2s;
+
+    &:hover {
+      background-color: #f8f9fa;
+    }
+  }
+}
+
+/* Mensaje si no hay resultados */
+.mensaje-vacio {
+  text-align: center;
+  font-style: italic;
+  color: #888;
+  margin-top: 2rem;
+}

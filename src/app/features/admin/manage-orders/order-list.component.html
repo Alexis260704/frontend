@@ -1,0 +1,52 @@
+<thead class="table-light">
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">Correo del cliente</th>
+    <th scope="col">Estado</th>
+    <th scope="col">Total</th>
+    <th scope="col">Entrega estimada</th>
+    <th scope="col">Comprobante</th> <!-- ✅ nueva columna -->
+    <th scope="col">Acciones</th>
+  </tr>
+</thead>
+<tbody>
+  <tr *ngFor="let o of pedidos">
+    <th scope="row">#{{ o.id }}</th>
+    <td>{{ o.customerEmail || 'Invitado' }}</td>
+    <td>
+      <span class="badge"
+        [ngClass]="{
+          'bg-secondary': o.status === 'PENDING',
+          'bg-success': o.status === 'PAID' || o.status === 'DELIVERED',
+          'bg-warning text-dark': o.status === 'SHIPPED',
+          'bg-danger': o.status === 'CANCELLED'
+        }">
+        {{ o.status }}
+      </span>
+    </td>
+    <td>S/ {{ o.total | number: '1.2-2' }}</td>
+    <td>{{ o.estimatedDelivery | date: 'shortDate' }}</td>
+    <td>
+      <ng-container *ngIf="o.comprobantePath; else noArchivo">
+        <a
+          [href]="'http://localhost:8080/uploads/' + o.comprobantePath"
+          target="_blank"
+          class="btn btn-sm btn-outline-success"
+        >
+          Ver comprobante
+        </a>
+      </ng-container>
+      <ng-template #noArchivo>
+        <span class="text-muted small">No enviado</span>
+      </ng-template>
+    </td>
+    <td>
+      <a
+        [routerLink]="['/admin/manage-orders', o.id]"
+        class="btn btn-sm btn-outline-primary"
+      >
+        Ver detalle →
+      </a>
+    </td>
+  </tr>
+</tbody>

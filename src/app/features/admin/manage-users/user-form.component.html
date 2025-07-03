@@ -1,0 +1,43 @@
+<div class="user-form-container">
+  <h2>{{ isEditMode ? 'Editar usuario' : 'Crear usuario' }}</h2>
+
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="firstName">Nombre</label>
+      <input id="firstName" type="text" formControlName="firstName" />
+    </div>
+
+    <div>
+      <label for="lastName">Apellido</label>
+      <input id="lastName" type="text" formControlName="lastName" />
+    </div>
+
+    <div>
+      <label for="email">Correo</label>
+      <input id="email" type="email" formControlName="email" />
+    </div>
+
+    <div>
+      <label for="phone">Teléfono</label>
+      <input id="phone" type="text" formControlName="phone" />
+    </div>
+
+    <div>
+      <label for="role">Rol</label>
+      <select id="role" formControlName="role">
+        <option *ngFor="let r of roles" [value]="r">{{ r }}</option>
+      </select>
+    </div>
+
+    <div>
+      <label>
+        <input type="checkbox" formControlName="active" />
+        Activo
+      </label>
+    </div>
+
+    <button type="submit" [disabled]="userForm.invalid">
+      {{ isEditMode ? 'Actualizar' : 'Crear' }}
+    </button>
+  </form>
+</div>

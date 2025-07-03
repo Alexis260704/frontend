@@ -1,0 +1,39 @@
+<nav class="navbar">
+  <div class="navbar-container">
+
+    <!-- ⚡ Logo -->
+    <a [routerLink]="['/tienda']" class="navbar-logo" aria-label="Inicio">
+      ⚡ ElectroTienda
+    </a>
+
+    <!-- 🔍 Buscador -->
+    <div class="navbar-search">
+      <app-search-bar></app-search-bar>
+    </div>
+
+    <!-- 🛠️ Acciones -->
+    <div class="navbar-actions">
+
+      <!-- 🛒 Carrito -->
+      <a [routerLink]="['/user/checkout/cart']" class="navbar-cart" aria-label="Carrito">
+        🛒
+        <span *ngIf="itemsCount() > 0" class="cart-badge">{{ itemsCount() }}</span>
+      </a>
+
+      <!-- 👤 Usuario logueado -->
+      <ng-container *ngIf="isLoggedIn(); else guestLinks">
+        <span class="navbar-user" aria-label="Usuario actual">👤 {{ username() }}</span>
+        <a [routerLink]="['/user/perfil']" aria-label="Perfil">Perfil</a>
+        <a [routerLink]="['/user/pedidos']" aria-label="Mis pedidos">🧾 Pedidos</a>
+        <button class="btn-logout" (click)="logout()" aria-label="Cerrar sesión">Salir</button>
+      </ng-container>
+
+      <!-- 🔐 Invitado -->
+      <ng-template #guestLinks>
+        <a [routerLink]="['/login']" aria-label="Iniciar sesión">Iniciar sesión</a>
+        <a [routerLink]="['/register']" aria-label="Registrarse">Registrarse</a>
+      </ng-template>
+
+    </div>
+  </div>
+</nav>

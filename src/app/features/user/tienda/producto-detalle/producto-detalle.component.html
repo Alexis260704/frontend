@@ -1,0 +1,46 @@
+<section class="detalle-container" *ngIf="!loading && producto">
+  <!-- Recuadro de descuento -->
+  <div class="etiqueta-descuento">-15%</div>
+
+  <div class="detalle-contenido">
+    <!-- Imagen -->
+    <img
+      [src]="'http://localhost:8080' + producto.imageUrl"
+      alt="{{ producto.name }}"
+      class="detalle-imagen"
+    />
+
+    <!-- Información -->
+    <div class="detalle-info">
+      <h1 class="detalle-nombre">{{ producto.name }}</h1>
+      <p class="detalle-marca">Marca: {{ producto.brandName }}</p>
+      <p class="detalle-sku">SKU: {{ producto.id }}</p>
+
+      <div class="detalle-precios">
+        <span class="precio-oferta">S/ {{ producto.price | number: '1.2-2' }}</span>
+        <span class="precio-tachado">S/ {{ producto.price * 1.25 | number: '1.2-2' }}</span>
+      </div>
+
+      <p class="detalle-descripcion">{{ producto.description }}</p>
+      <p class="detalle-stock">📦 Stock disponible: {{ producto.stock }}</p>
+      <p class="detalle-envio">🚚 Entrega estimada: 3–5 días hábiles</p>
+
+      <div class="detalle-acciones">
+        <button class="btn-agregar" (click)="agregarAlCarrito()">🛒 Añadir al carrito</button>
+        <span class="favorito">❤️</span>
+      </div>
+
+      <p class="detalle-promo">🔥 Llévate 2 y obtén envío gratis</p>
+    </div>
+  </div>
+
+  <!-- Redes sociales -->
+  <div class="redes-sociales">
+    <span>📘</span>
+    <span>🐦</span>
+    <span>📸</span>
+    <span>📌</span>
+  </div>
+
+  <button (click)="volver()" class="btn-volver">← Volver a resultados</button>
+</section>

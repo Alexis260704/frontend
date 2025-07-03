@@ -1,0 +1,89 @@
+<section class="container my-4 p-4 bg-white shadow-sm rounded border">
+  <h2 class="h4 mb-3 text-primary">📦 Pedido #{{ pedido.id }}</h2>
+
+  <ul class="list-group mb-4">
+    <li class="list-group-item"><strong>Cliente:</strong> {{ pedido.customerName || 'Invitado' }}</li>
+    <li class="list-group-item"><strong>Email:</strong> {{ pedido.customerEmail }}</li>
+    <li class="list-group-item"><strong>Teléfono:</strong> {{ pedido.customerPhone }}</li>
+    <li class="list-group-item"><strong>Estado:</strong> 
+      <span class="badge"
+        [ngClass]="{
+          'bg-secondary': pedido.status === 'PENDING',
+          'bg-success': pedido.status === 'PAID' || pedido.status === 'DELIVERED',
+          'bg-warning text-dark': pedido.status === 'SHIPPED',
+          'bg-danger': pedido.status === 'CANCELLED'
+        }">
+        {{ pedido.status }}
+      </span>
+    </li>
+    <li class="list-group-item"><strong>Dirección de envío:</strong> {{ pedido.shippingAddress }}</li>
+    <li class="list-group-item" *ngIf="pedido.estimatedDelivery">
+      <strong>Entrega estimada:</strong> {{ pedido.estimatedDelivery | date }}
+    </li>
+    <li class="list-group-item"><strong>Método de pago:</strong> {{ pedido.paymentMethod }}</li>
+  </ul>
+
+  <!-- ✅ Mostrar comprobante si existe -->
+  <div *ngIf="pedido.comprobantePath" class="mb-4 border-top pt-3">
+    <p class="fw-semibold mb-2">📎 Comprobante de pago:</p>
+    <img
+      [src]="'http://localhost:8080/uploads/' + pedido.comprobantePath"
+      alt="Comprobante"
+      class="img-fluid rounded border shadow-sm"
+      style="max-width: 300px;"
+    />
+    <br />
+    <a
+      [href]="'http://localhost:8080/uploads/' + pedido.comprobantePath"
+      target="_blank"
+      class="btn btn-sm btn-outline-primary mt-2"
+    >
+      Ver en nueva pestaña
+    </a>
+  </div>
+
+  <h5 class="text-secondary">📦 Productos</h5>
+  <div class="row g-3 mb-4">
+    <div *ngFor="let item of pedido.details" class="col-md-6">
+      <div class="card border shadow-sm h-100">
+        <div class="card-body">
+          <h6 class="card-title mb-2 fw-bold">{{ item.productName }}</h6>
+          <p class="card-text mb-1">Cantidad: {{ item.quantity }}</p>
+          <p class="card-text mb-1">Precio unitario: S/ {{ item.unitPrice | number: '1.2-2' }}</p>
+          <p class="card-text text-end fw-semibold text-primary">
+            Subtotal: S/ {{ item.unitPrice * item.quantity | number: '1.2-2' }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="text-end fs-5 fw-bold">
+    Total: S/ {{ pedido.total | number: '1.2-2' }}
+  </div>
+</section>
+
+<section class="container my-4 p-4 bg-white rounded shadow-sm border">
+  <label for="estado" class="form-label">Actualizar estado del pedido:</label>
+
+  <div class="d-flex flex-wrap align-items-center gap-2 mb-3">
+    <select id="estado" [(ngModel)]="estadoSeleccionado" class="form-select w-auto">
+      <option value="PENDING">Pendiente</option>
+      <option value="PAID">Pagado</option>
+      <option value="SHIPPED">Enviado</option>
+      <option value="DELIVERED">Entregado</option>
+      <option value="CANCELLED">Cancelado</option>
+    </select>
+
+    <button
+      (click)="actualizarEstado()"
+      [disabled]="estadoSeleccionado === pedido.status"
+      class="btn btn-success"
+    >
+      Actualizar estado
+    </button>
+  </div>
+
+  <div *ngIf="mensaje" class="alert alert-success py-2">{{ mensaje }}</div>
+  <div *ngIf="error" class="alert alert-danger py-2">{{ error }}</div>
+</section>

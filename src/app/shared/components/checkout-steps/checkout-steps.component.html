@@ -1,0 +1,49 @@
+<div class="checkout-steps">
+  <!-- Paso 1: Carrito -->
+  <div
+    class="step"
+    [class.completed]="currentStep !== 'cart'"
+    [class.active]="currentStep === 'cart'"
+    [class.clickable]="esNavegable('cart')"
+    (click)="irA('cart')"
+  >
+    <div class="circle">
+      <ng-container *ngIf="currentStep === 'cart'; else check1">1</ng-container>
+      <ng-template #check1>✔</ng-template>
+    </div>
+    <span>Carrito</span>
+  </div>
+
+  <div class="line"></div>
+
+  <!-- Paso 2: Entrega -->
+  <div
+    class="step"
+    [class.completed]="currentStep === 'payment'"
+    [class.active]="currentStep === 'shipping'"
+    [class.clickable]="esNavegable('shipping')"
+    (click)="irA('shipping')"
+  >
+    <div class="circle">
+      <ng-container *ngIf="currentStep === 'shipping'; else check2">2</ng-container>
+      <ng-template #check2>✔</ng-template>
+    </div>
+    <span>Entrega</span>
+  </div>
+
+  <div class="line"></div>
+
+  <!-- Paso 3: Pago -->
+  <div
+    class="step"
+    [class.active]="currentStep === 'payment'"
+    [class.clickable]="esNavegable('payment')"
+    (click)="irA('payment')"
+  >
+    <div class="circle">
+      <ng-container *ngIf="currentStep === 'payment'; else lock">3</ng-container>
+      <ng-template #lock>🔒</ng-template>
+    </div>
+    <span>Pago</span>
+  </div>
+</div>

@@ -1,0 +1,20 @@
+<section class="pedidos-container">
+  <h2 class="titulo">📃 Mis Pedidos</h2>
+
+  <div *ngIf="pedidos.length === 0" class="mensaje-vacio">No tienes pedidos registrados.</div>
+
+  <div *ngFor="let pedido of pedidos" class="pedido-card">
+    <h3 class="pedido-id">Pedido #{{ pedido.id }}</h3>
+    <p>Total: S/ {{ pedido.total | number: '1.2-2' }}</p>
+    <p>Estado: {{ pedido.status }}</p>
+    <p>Método de pago: {{ pedido.paymentMethod }}</p>
+    <p class="direccion">Dirección: {{ pedido.shippingAddress }}</p>
+
+    <button
+      [routerLink]="['/user/pedidos', pedido.id]"
+      class="ver-detalles"
+    >
+      Ver detalles →
+    </button>
+  </div>
+</section>

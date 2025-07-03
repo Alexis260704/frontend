@@ -1,0 +1,50 @@
+<form [formGroup]="productForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data" class="space-y-4">
+  <div>
+    <label for="name">Nombre</label>
+    <input id="name" type="text" formControlName="name" class="w-full border p-2 rounded" />
+  </div>
+
+  <div>
+    <label for="description">Descripción</label>
+    <textarea id="description" formControlName="description" class="w-full border p-2 rounded"></textarea>
+  </div>
+
+  <div>
+    <label for="price">Precio</label>
+    <input id="price" type="number" formControlName="price" step="0.01" class="w-full border p-2 rounded" />
+  </div>
+
+  <div>
+    <label for="stock">Stock</label>
+    <input id="stock" type="number" formControlName="stock" class="w-full border p-2 rounded" />
+  </div>
+
+  <div>
+    <label for="category">Categoría</label>
+    <select id="category" formControlName="categoryId" class="w-full border p-2 rounded">
+      <option *ngFor="let c of categories" [value]="c.id">{{ c.name }}</option>
+    </select>
+  </div>
+
+  <div>
+    <label for="brand">Marca</label>
+    <select id="brand" formControlName="brandId" class="w-full border p-2 rounded">
+      <option *ngFor="let b of brands" [value]="b.id">{{ b.name }}</option>
+    </select>
+  </div>
+
+  <div>
+    <label for="file">Imagen</label>
+    <input id="file" type="file" (change)="onFileChange($event)" class="w-full border p-2 rounded" />
+  </div>
+
+  <div>
+    <label>
+      <input type="checkbox" formControlName="featured" /> Destacado
+    </label>
+  </div>
+
+  <button type="submit" [disabled]="productForm.invalid" class="bg-blue-500 text-white px-4 py-2 rounded">
+    {{ id ? 'Actualizar' : 'Crear' }} Producto
+  </button>
+</form>

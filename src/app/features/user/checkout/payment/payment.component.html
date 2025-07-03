@@ -1,0 +1,68 @@
+<app-checkout-steps></app-checkout-steps>
+
+<section class="pago-container">
+  <h2 class="pago-titulo">💳 Confirmar pago</h2>
+
+  <!-- Mensaje de error -->
+  <div *ngIf="error" class="pago-error">
+    {{ error }}
+  </div>
+
+  <!-- Mensaje de éxito -->
+  <div *ngIf="mensaje" class="pago-success">
+    {{ mensaje }}
+  </div>
+
+  <!-- Método de pago -->
+  <div class="metodo-pago">
+    <label><strong>Selecciona método de pago:</strong></label>
+    <select [(ngModel)]="paymentMethod" (change)="seleccionarMetodo(paymentMethod)" class="border p-2 rounded mt-1">
+      <option value="EFECTIVO">Efectivo</option>
+      <option value="YAPE">Yape</option>
+      <option value="TARJETA">Tarjeta</option>
+    </select>
+  </div>
+
+  <!-- QR Yape -->
+  <div *ngIf="mostrarQR" class="qr-yape mt-4">
+    <h4 class="font-semibold mb-2">Escanea el código QR con Yape:</h4>
+    <img src="assets/qrs/qr.jpg" alt="QR Yape" class="w-52 h-52 rounded shadow border" />
+    <button class="bg-blue-600 text-white px-4 py-2 rounded mt-3" (click)="activarSubida()">Ya escaneé el QR</button>
+  </div>
+
+  <!-- Comprobante -->
+  <div *ngIf="mostrarSubida" class="subida-comprobante mt-4">
+    <label class="block font-medium mb-1">Sube tu comprobante de pago (imagen):</label>
+    <input type="file" (change)="onFileSelected($event)" />
+  </div>
+
+  <!-- Resumen del carrito -->
+  <div *ngIf="items.length > 0" class="pago-resumen mt-6">
+    <h3 class="pago-subtitulo">Resumen del carrito:</h3>
+    <ul class="pago-lista">
+      <li *ngFor="let item of items" class="pago-item">
+        <p class="pago-nombre">{{ item.producto.name }}</p>
+        <p>Cantidad: {{ item.cantidad }}</p>
+        <p>Precio unitario: S/ {{ item.producto.price | number: '1.2-2' }}</p>
+        <p class="pago-subtotal">
+          Subtotal: S/ {{ item.producto.price * item.cantidad | number: '1.2-2' }}
+        </p>
+      </li>
+    </ul>
+
+    <div class="pago-total mt-4">
+      Total a pagar: <span class="font-bold">S/ {{ total | number: '1.2-2' }}</span>
+    </div>
+  </div>
+
+  <!-- Botón de confirmación -->
+  <div class="pago-boton mt-6">
+    <button
+      (click)="confirmarCompra()"
+      [disabled]="loading"
+      class="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700"
+    >
+      {{ loading ? 'Procesando...' : 'Confirmar compra' }}
+    </button>
+  </div>
+</section>

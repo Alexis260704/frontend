@@ -1,0 +1,44 @@
+<div class="user-list-container">
+  <h2>Gestión de usuarios</h2>
+
+  <div *ngIf="errorMessage" class="error">
+    {{ errorMessage }}
+  </div>
+
+  <div *ngIf="users.length === 0 && !errorMessage">
+    <p>No hay usuarios registrados.</p>
+  </div>
+
+  <table *ngIf="users.length > 0">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre completo</th>
+        <th>Email</th>    
+        <th>Teléfono</th>
+        <th>Rol</th>
+        <th>Activo</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let u of users">
+        <td>{{ u.id }}</td>
+        <td>{{ u.firstName }} {{ u.lastName }}</td>
+        <td>{{ u.email }}</td>
+        <td>{{ u.phone || '-' }}</td>
+        <td>{{ u.role }}</td>
+        <td>{{ u.active ? 'Sí' : 'No' }}</td>
+        <td>
+          <a [routerLink]="['/admin/manage-users', u.id]">Editar</a>
+          |
+          <button (click)="eliminarUsuario(u.id)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="nuevo-usuario">
+    <a routerLink="/admin/manage-users/new">Crear nuevo usuario</a>
+  </div>
+</div>

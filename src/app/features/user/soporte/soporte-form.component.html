@@ -1,0 +1,22 @@
+<div class="soporte-form-container">
+  <h2>Enviar solicitud de soporte</h2>
+
+  <form [formGroup]="soporteForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="asunto">Asunto</label>
+      <input id="asunto" type="text" formControlName="asunto" />
+    </div>
+
+    <div>
+      <label for="mensaje">Mensaje</label>
+      <textarea id="mensaje" rows="4" formControlName="mensaje"></textarea>
+    </div>
+
+    <button type="submit" [disabled]="soporteForm.invalid">Enviar</button>
+
+    <p *ngIf="successMessage" class="success">{{ successMessage }}</p>
+    <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+  </form>
+
+  <a routerLink="/user/soporte">Volver a mis solicitudes</a>
+</div>

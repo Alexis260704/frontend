@@ -1,0 +1,83 @@
+<main class="store-content space-y-6">
+
+  <!-- Carrusel de categorías destacadas (Bootstrap) -->
+  <section class="carousel-categorias">
+  <div id="promoCarousel" class="carousel slide mb-5" data-bs-ride="carousel">
+    <div class="carousel-inner">
+
+      <div class="carousel-item active" (click)="irACategoria('televisores')" style="cursor: pointer;">
+        <img src="assets/banners/resized_televisores.jpg" class="d-block w-100 categoria-img" alt="Televisores">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>📺 Televisores</h5>
+        </div>
+      </div>
+
+      <div class="carousel-item" (click)="irACategoria('celulares')" style="cursor: pointer;">
+        <img src="assets/banners/resized_celulares.jpg" class="d-block w-100 categoria-img" alt="Celulares">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>📱 Celulares</h5>
+        </div>
+      </div>
+
+      <div class="carousel-item" (click)="irACategoria('lavadoras')" style="cursor: pointer;">
+        <img src="assets/banners/resized_lavadoras.jpg" class="d-block w-100 categoria-img" alt="Lavadoras">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>🧺 Lavadoras</h5>
+        </div>
+      </div>
+
+    </div>
+
+    <button class="carousel-control-prev" type="button" data-bs-target="#promoCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Anterior</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#promoCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Siguiente</span>
+    </button>
+  </div>
+</section>
+
+
+  <!-- Carrusel de productos destacados -->
+  <section *ngIf="featuredProducts.length > 0" class="featured-carousel">
+    <h2 class="titulo-carrusel">✨ Productos Destacados</h2>
+    <div class="carousel-wrapper">
+      <div
+        *ngFor="let product of featuredProducts"
+        class="featured-item"
+        (click)="goToProduct(product.id)"
+      >
+        <img [src]="'http://localhost:8080' + product.imageUrl" alt="{{ product.name }}" />
+        <h3>{{ product.name }}</h3>
+        <p class="producto-marca">Marca: {{ product.brandName }}</p>
+        <p class="producto-descripcion">{{ product.description }}</p>
+        <p class="producto-precio">S/ {{ product.price | number: '1.2-2' }}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Resultados de búsqueda -->
+  <section *ngIf="filteredProducts.length > 0" class="resultados-busqueda">
+    <h2 class="titulo-resultados">🔎 Resultados de búsqueda</h2>
+    <ul>
+      <li
+        *ngFor="let p of filteredProducts"
+        (click)="goToProduct(p.id)"
+        class="resultado-item"
+      >
+        {{ p.name }} - S/ {{ p.price | number: '1.2-2' }}
+      </li>
+    </ul>
+  </section>
+
+  <!-- Mensaje si no hay resultados -->
+  <p
+    *ngIf="!loading && filteredProducts.length === 0 && (nameFilter || categoryFilter || brandFilter)"
+    class="mensaje-vacio"
+  >
+    No se encontraron productos con esos criterios.
+  </p>
+
+</main>

@@ -1,0 +1,147 @@
+.cart-grid {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  margin: 2rem auto;
+  max-width: 1200px;
+}
+
+.cart-productos {
+  flex: 3;
+}
+
+.cart-resumen {
+  flex: 1;
+  background-color: #f9f9f9;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  position: sticky;
+  top: 2rem;
+  align-self: flex-start;
+}
+
+.resumen-linea {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.1rem;
+  margin: 1rem 0;
+}
+
+.btn-continuar {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #00b894;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-bottom: 1rem;
+}
+
+.btn-vaciar {
+  width: 100%;
+  padding: 0.6rem;
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.producto-card {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #ddd;
+}
+
+.producto-img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
+
+.producto-detalles {
+  flex: 1;
+}
+
+.producto-detalles h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: #2c3e50;
+}
+
+.sku, .marca, .entrega, .retiro {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.precios {
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+  margin: 0.4rem 0;
+}
+
+.precio-actual {
+  color: #27ae60;
+  font-weight: bold;
+}
+
+.precio-original {
+  text-decoration: line-through;
+  color: #aaa;
+  font-size: 0.95rem;
+}
+
+.cantidad-control {
+  display: flex;
+  gap: 0.5rem;
+  margin: 0.6rem 0;
+  align-items: center;
+}
+
+.btn-eliminar {
+  background-color: transparent;
+  border: none;
+  color: #e74c3c;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 0.5rem;
+}
+
+.promo-cupon {
+  margin-top: 2rem;
+}
+
+.promo-texto {
+  font-size: 1rem;
+  color: #d35400;
+  margin-bottom: 0.5rem;
+}
+
+.cupon-wrapper {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.input-cupon {
+  flex: 1;
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.btn-aplicar {
+  background-color: #0984e3;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}

@@ -1,0 +1,90 @@
+<app-checkout-steps></app-checkout-steps>
+
+<div class="shipping-container max-w-4xl mx-auto p-4 bg-white shadow rounded">
+  <h2 class="text-2xl font-bold mb-6 text-primary">🚚 Dirección de envío</h2>
+
+  <form [formGroup]="shippingForm" (ngSubmit)="continuar()" novalidate>
+    <div class="row g-3">
+      <!-- Dirección exacta -->
+      <div class="col-md-8">
+        <label for="direccion" class="form-label">Dirección exacta *</label>
+        <input
+          id="direccion"
+          type="text"
+          formControlName="direccion"
+          class="form-control"
+          placeholder="Ej. Av. Grau 123"
+          [class.is-invalid]="shippingForm.get('direccion')?.invalid && shippingForm.get('direccion')?.touched"
+        />
+        <div class="invalid-feedback">Este campo es obligatorio</div>
+      </div>
+
+      <!-- Referencia -->
+      <div class="col-md-4">
+        <label for="referencia" class="form-label">Referencia</label>
+        <input
+          id="referencia"
+          type="text"
+          formControlName="referencia"
+          class="form-control"
+          placeholder="Ej. frente al parque"
+        />
+      </div>
+
+      <!-- Departamento -->
+      <div class="col-md-4">
+        <label for="departamento" class="form-label">Departamento *</label>
+        <input
+          id="departamento"
+          type="text"
+          formControlName="departamento"
+          class="form-control"
+          placeholder="Ej. Lima"
+          [class.is-invalid]="shippingForm.get('departamento')?.invalid && shippingForm.get('departamento')?.touched"
+        />
+        <div class="invalid-feedback">Este campo es obligatorio</div>
+      </div>
+
+      <!-- Provincia -->
+      <div class="col-md-4">
+        <label for="provincia" class="form-label">Provincia *</label>
+        <input
+          id="provincia"
+          type="text"
+          formControlName="provincia"
+          class="form-control"
+          placeholder="Ej. Lima"
+          [class.is-invalid]="shippingForm.get('provincia')?.invalid && shippingForm.get('provincia')?.touched"
+        />
+        <div class="invalid-feedback">Este campo es obligatorio</div>
+      </div>
+
+      <!-- Distrito -->
+      <div class="col-md-4">
+        <label for="distrito" class="form-label">Distrito *</label>
+        <input
+          id="distrito"
+          type="text"
+          formControlName="distrito"
+          class="form-control"
+          placeholder="Ej. San Juan de Lurigancho"
+          [class.is-invalid]="shippingForm.get('distrito')?.invalid && shippingForm.get('distrito')?.touched"
+        />
+        <div class="invalid-feedback">Este campo es obligatorio</div>
+      </div>
+    </div>
+
+    <!-- Separador -->
+    <hr class="my-4" />
+
+    <!-- Botón -->
+    <div class="text-end">
+      <button
+        type="submit"
+        class="btn btn-primary px-5"
+      >
+        Continuar con el pago →
+      </button>
+    </div>
+  </form>
+</div>

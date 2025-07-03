@@ -1,0 +1,124 @@
+.navbar {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #1e1e2f;
+  color: #fff;
+  padding: 1rem 2rem;
+  margin: 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+
+  .navbar-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; // 🔑 Reparte logo - buscador - acciones
+    max-width: 1600px;
+    margin: 0 auto;
+    gap: 1rem;
+  }
+
+  .navbar-logo {
+    flex: 0 0 auto;
+    font-size: 1.7rem;
+    font-weight: bold;
+    color: #fff;
+    text-decoration: none;
+    white-space: nowrap;
+
+    &:hover {
+      color: #ffcc00;
+    }
+  }
+
+  .navbar-search {
+    flex: 1 1 auto; // 🔑 ocupa el espacio restante entre logo y acciones
+    max-width: 700px;
+    margin: 0 2rem;
+    position: relative;
+    z-index: 10;
+
+    app-search-bar {
+      width: 100%;
+    }
+  }
+
+  .navbar-actions {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    white-space: nowrap;
+
+    a {
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 500;
+
+      &:hover {
+        color: #ffcc00;
+      }
+    }
+
+    .navbar-cart {
+      position: relative;
+      font-size: 1.4rem;
+
+      .cart-badge {
+        position: absolute;
+        top: -2px;
+        right: -8px;
+        background-color: #ff3b3b;
+        color: #fff;
+        font-size: 0.7rem;
+        font-weight: bold;
+        padding: 2px 6px;
+        border-radius: 50%;
+      }
+    }
+
+    .navbar-user {
+      font-weight: bold;
+    }
+
+    .btn-logout {
+      background-color: transparent;
+      border: 1px solid #ff3b3b;
+      color: #ff3b3b;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #ff3b3b;
+        color: #fff;
+      }
+    }
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0.75rem 1rem;
+
+    .navbar-container {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 1rem;
+    }
+
+    .navbar-search {
+      width: 100%;
+      margin: 0;
+    }
+
+    .navbar-actions {
+      flex-direction: column;
+      align-items: flex-start;
+      width: 100%;
+    }
+  }
+}
